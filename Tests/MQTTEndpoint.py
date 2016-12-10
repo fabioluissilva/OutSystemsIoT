@@ -1,6 +1,8 @@
 #!/usr/bin/python
 
 import paho.mqtt.client as mqtt
+import RPi.GPIO as GPIO
+import time
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
@@ -13,12 +15,22 @@ def on_connect(client, userdata, flags, rc):
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
-    print(msg.topic+" "+str(msg.payload))
+    if msg.payload=='open_lock':
+	print "Opening Lock"
+	GPIO.setmode(GPIO.BOARD)
+        GPIO.setup(11,GPIO.OUT)
+        GPIO.output(11,GPIO.HIGH)
+	time.sleep(2)
+	print "Closing Lock"
+	GPIO.output(11,GPIO.LOW)
+	GPIO.cleanup()  
+    else:
+	print "Message not recognized"
+
 
 client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
-
 client.connect("iot.eclipse.org", 1883, 60)
 
 # Blocking call that processes network traffic, dispatches callbacks and
