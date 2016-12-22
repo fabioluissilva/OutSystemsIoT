@@ -1,0 +1,1 @@
+pscp pi@srvptiot01:/home/pi/*.py .
