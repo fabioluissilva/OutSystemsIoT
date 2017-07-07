@@ -1,0 +1,1 @@
+arn:aws:iot:eu-west-1:502833516489:thing/OutSystemsLockTest

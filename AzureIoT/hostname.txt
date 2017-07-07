@@ -1,0 +1,1 @@
+var connectionString = 'HostName=OS-Hackathon-IoT-Hub.azure-devices.net;DeviceId=new-iot-device;SharedAccessKey=bPTJG3IjlLrlu0z2Wvh2UKOOlSmODRBZ5UiPHvTcVsI=';
